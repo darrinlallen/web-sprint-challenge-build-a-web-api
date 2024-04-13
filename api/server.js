@@ -5,14 +5,14 @@
 // Do NOT `server.listen()` inside this file!
 const express = require('express');
 
-const projectsRouter = require('./projects/projects-router.js');
-const actionRouter = require('./actions/actions-router.js');
+const projectsRouter = require('./projects/projects-router');
+const actionRouter = require('./actions/actions-router');
 
 const server = express();
 
 server.use(express.json());
 
-server.use('api/projects/', projectsRouter); //uter
-server.use('/api/actions/', actionRouter); // 
+server.use('/api/projects', projectsRouter); //uter
+server.use('/api/actions', actionRouter); // 
 
 module.exports = server;

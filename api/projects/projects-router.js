@@ -1,13 +1,13 @@
 // Write your "projects" router here!
 const express = require('express');
 
-const Projects = require('./projects-model.js');
+const Projects = require('./projects-model');
 const router = express.Router()
 
 router.get('/api/projects', (req, res) => {
     Projects.find()
-      .then(projects => {
-        res.status(200).json(projects);
+      .then(proj=> {
+        res.status(200).json(proj);
       })
       .catch(error => {
         console.log(error);
@@ -15,4 +15,4 @@ router.get('/api/projects', (req, res) => {
         });
       });
   })
-
+  module.exports = router
