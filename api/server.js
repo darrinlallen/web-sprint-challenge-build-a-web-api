@@ -15,4 +15,9 @@ server.use(express.json());
 server.use('/api/projects', projectsRouter); //uter
 server.use('/api/actions', actionRouter); // 
 
+// error handling middleware
+server.use((error, req, res, next) => {
+    // here you could inspect the error and decide how to respond
+    res.status(error.status || 500).json({ message: error.message });
+  });
 module.exports = server;
