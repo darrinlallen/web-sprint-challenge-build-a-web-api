@@ -16,6 +16,6 @@ const server = require ('./api/server.js');
 const port = process.env.PORT || 9000;  // If process.env.PORT is undefined, then it defaults to 3000
 
 
-server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+server.listen(9000, () => {
+  console.log(`Server is running on port 9000`);
 });

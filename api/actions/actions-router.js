@@ -3,16 +3,17 @@ const express = require('express');
 
 const Actions = require('./actions-model');
 const router = express.Router()
-router.get('/api/actions', (req, res) => {
-    Actions.get()
+router.get('/',async (req, res) => {
+    
+  try {
+    await Actions.get()
       .then(actions=> {
-        res.status(200).send("hhgggg");
+        res.status(200).json(actions);
       })
-      .catch(error => {
-        console.log(error);
-        res.status(500).json({
-        });
-      });
+  }
+  catch(err) {
+    console.log(err)
+  }  
   })
 
 module.exports = router
