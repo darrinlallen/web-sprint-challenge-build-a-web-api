@@ -52,4 +52,38 @@ router.get('/', async  (req, res) => {
    }
     
   })
+
+
+  router.get('/:id/actions', async  (req, res) => {
+    try {await Project.getProjectActions(req.params.id)
+      .then(proj=> {
+        if (proj){
+        res.status(200).json(proj)}
+        else {
+          res.status(404).json("not found")
+        }
+   })}
+   catch(err) {
+      console.log(err)
+   }
+    
+  })
+  router.put('/:id',  async (req, res) => {
+    const ch = req.body
+    try { await Project.update(req.params.id, ch)
+      .then(proj => {
+
+        if (!ch){
+          res.status(400)
+        }
+        if (proj) {
+          res.status(200).json(proj)
+        }
+      })}
+        catch(error) {
+        // log error to server
+        console.log(error);
+        res.status(404).json('Error updating')
+      }})
+
 module.exports = router

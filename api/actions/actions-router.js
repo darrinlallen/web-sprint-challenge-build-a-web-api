@@ -66,4 +66,22 @@ router.get('/:id', async (req, res) => {
    }
   })
 
+  router.put('/:id',  async (req, res) => {
+    const ch = req.body
+    try { await Actions.update(req.params.id, ch)
+      .then(actions => {
+
+        if (!ch){
+          res.status(400)
+        }
+        if (actions) {
+          res.status(200).json(actions)
+        }
+      })}
+        catch(error) {
+        // log error to server
+        console.log(error);
+        res.status(404).json('Error updating')
+      }})
+
 module.exports = router;
