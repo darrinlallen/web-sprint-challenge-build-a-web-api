@@ -70,20 +70,25 @@ router.get('/', async  (req, res) => {
   })
   router.put('/:id',  async (req, res) => {
     const ch = req.body
+    if (!ch){
+      res.status(400);
+    }
     try { await Project.update(req.params.id, ch)
       .then(proj => {
 
-        if (!ch){
+        if (proj) {
+          res.status(400).json(proj)
+        }
+        else if 
+      (!ch){
           res.status(400)
         }
-        if (proj) {
-          res.status(200).json(proj)
-        }
+     
       })}
         catch(error) {
         // log error to server
         console.log(error);
-        res.status(404).json('Error updating')
+        res.status(400).json('Error updating')
       }})
 
 module.exports = router
