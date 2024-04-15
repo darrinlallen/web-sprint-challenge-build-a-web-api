@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
   router.post('/', async (req, res) => {
     
     try {
-      await Actions.insert()
+      await Actions.insert(req.body)
         .then(actions=> {
     
           res.status(201).json(actions);
@@ -71,13 +71,9 @@ router.get('/:id', async (req, res) => {
     try { await Actions.update(req.params.id, ch)
       .then(act => {
 
-        if (act) {
+        
           res.status(200).json(act)
-        }
-        else if 
-      (!ch){
-          res.status(400)
-        }
+      
      
       })}
         catch(error) {
